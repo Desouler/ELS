@@ -1,0 +1,10 @@
+.main-content {
+  transition: all 0.3s ease;
+  margin: 50px 0 0 var(--sidebar-width);
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    margin-left: 0 !important;
+  }
+}

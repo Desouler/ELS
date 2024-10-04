@@ -1,0 +1,54 @@
+<div class="sidebar-overlay" *ngIf="layoutsService.sidebarOpen.value"></div>
+<aside class="sidebar">
+  <div class="top-container">
+    <img src="/assets/images/crane.png" alt="" width="auto" height="40" />
+    <div class="sidebar-close-button-container" (click)="closeSidebar()">
+      <i class="fas fa-times fa-fw"></i>
+    </div>
+  </div>
+
+  <div class="menu flex-grow-1 sidebar-item sidebar-menu">
+    <ul>
+      <li *ngFor="let item of menu" [ngClass]="{ 'not-hover': item.subMenuItems }">
+        <div *ngIf="!item.subMenuItems">
+          <a [routerLink]="item.routerLink" routerLinkActive="active">
+            <i *ngIf="item.iconClass && item.iconClass != ''" [ngClass]="item.iconClass" class="fa-fw fas fa-bars"></i>
+            <span>{{ item.text | translate }}</span>
+          </a>
+        </div>
+        <div *ngIf="item.subMenuItems" class="">
+          <div class="sub-menu">
+            <i *ngIf="item.iconClass && item.iconClass != ''" [ngClass]="item.iconClass" class="fa-fw fas fa-bars"></i>
+            <span>{{ item.text | translate }}</span>
+          </div>
+          <div>
+            <ul>
+              <li *ngFor="let subItem of item.subMenuItems">
+                <a [routerLink]="subItem.routerLink" routerLinkActive="active" style="padding-left: 60px !important">
+                  <i *ngIf="subItem.iconClass && subItem.iconClass != ''" [ngClass]="subItem.iconClass" class="fa-fw fas fa-bars"></i>
+                  <span>{{ subItem.text | translate }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a routerLink="#" routerLinkActive="active" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>{{ "logout" | translate }}</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+<!-- <div class="menu-header">Settings</div>
+    <div class="menu-item">
+      <i class="fas fa-cogs fa-fw"></i>
+      <span [routerLink]="['/second-page']" routerLinkActive="active">
+        {{ "sidebar.secondMenuOption" | translate }}
+      </span>
+    </div> -->

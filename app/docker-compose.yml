@@ -1,0 +1,13 @@
+version: "3"
+services:
+  backend_corral_gr:
+    container_name: myapp
+    build:
+      context: ./
+    ports:
+      - 33333:80
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+      - SERVER_PORT=29688
+      - WSPORT=29688

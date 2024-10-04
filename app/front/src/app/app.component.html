@@ -1,0 +1,7 @@
+<div class="page-wrapper">
+  <router-outlet></router-outlet>
+</div>
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [style]="{ width: '50vw' }" [header]="'alerts.confirmTitle' | translate" icon="pi pi-exclamation-triangle">
+</p-confirmDialog>
+<ngx-loading-bar></ngx-loading-bar>

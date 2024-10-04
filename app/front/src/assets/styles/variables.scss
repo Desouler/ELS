@@ -1,0 +1,36 @@
+// Sidebar
+$sidebarFontFirstColor: #ffffff; //#000;
+$sidebarFontSecondColor: #000;
+$sidebarBackgroundFirstColor: white;
+$sidebarBackgroundSecondColor: #000000;
+$sidebarActiveLinkBackground: #333333dc;
+$sidebarRightBorderColor: #00263b;
+
+$buttonSuccessColor: #9aff81;
+$buttonInfoColor: #aa7cff;
+$buttonWarningColor: #ffca84;
+$buttonHelpColor: #ff96e8;
+$buttonDangerColor: #ff7777;
+
+// Header
+$headerBackgroundColor: #ffffff;
+$headerFontColor: #000000;
+
+:root {
+  --header-background: #ffffff;
+  --header-color: #444444;
+  --header-color-hover: #222222;
+
+  --sidebar-width: 250px;
+  --sidebar-background: white;
+  --sidebar-top-background: #ffffff;
+  --sidebar-separator: #f1f1f1;
+  --sidebar-color: #444444;
+  --sidebar-item-active-background: #f1f1f1;
+  --sidebar-item-hover-background: #f1f1f1;
+
+  --border-color: #f1f1f1;
+  --active-border-color: #6b6b6b;
+
+  --main-font-color: #444444;
+}

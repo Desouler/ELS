@@ -1,0 +1,55 @@
+<header class="header-desktop">
+  <div class="section__content section__content--p30">
+    <div class="container-fluid">
+      <div class="header-wrap">
+        <div class="d-flex">
+          <div class="flex-grow-1">
+            <div class="toggle-sidebar-button">
+              <a (click)="toggleSidebar()">
+                <i class="fas fa-bars fa-fw"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="d-inline-block relative mt-2">
+              <p-dropdown
+                class="me-3"
+                [options]="languages"
+                [(ngModel)]="selectedLanguage"
+                optionLabel="name"
+                placeholder="Select a Country"
+                (onChange)="changeLanguage($event)"
+              >
+                <ng-template pTemplate="selectedItem">
+                  <div
+                    class="flex align-items-center me-2"
+                    style="display: flex !important; justify-content: center; align-items: center"
+                    *ngIf="selectedLanguage"
+                  >
+                    <div class="flag" style="margin-top: -5px">
+                      <span [style.background-position]="'0 ' + selectedLanguage.position"></span>
+                    </div>
+                    <div style="margin-left: 10px; margin-top: 3px">
+                      {{ selectedLanguage.name }}
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                  <div class="flex flex-row gap-2" style="display: flex !important">
+                    <div class="flag">
+                      <span [style.background-position]="'0 ' + country.position"></span>
+                    </div>
+                    <div>{{ country.name }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+            <a (click)="logout()" class="header-button">
+              <i class="fas fa-sign-out-alt fa-fw"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

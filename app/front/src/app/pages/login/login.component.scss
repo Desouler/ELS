@@ -1,0 +1,14 @@
+@import "./../../../assets/styles/variables.scss";
+
+.black-link a {
+  border-bottom: 3px solid transparent;
+  display: inline-block;
+  padding: 5px 10px;
+  font-weight: 600;
+  text-decoration: none;
+  color: $sidebarActiveLinkBackground;
+  cursor: pointer;
+  &:hover {
+    font-weight: 900;
+  }
+}

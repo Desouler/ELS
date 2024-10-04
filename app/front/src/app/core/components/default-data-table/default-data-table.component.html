@@ -1,0 +1,109 @@
+<!-- prettier-ignore -->
+<p-table *ngIf="columns !== undefined && columns.length > 0" #dt [columns]="columns" [value]="dataSource"
+   [dataKey]="dataKey" [paginator]="true" [rows]="10"
+  [responsive]="true" [resizableColumns]="true" columnResizeMode="expand" (onRowSelect)="rowSelected()"
+  (onRowUnselect)="rowUnselected()" [autoLayout]="true">
+  <ng-template pTemplate="caption">
+    <!-- <div class="p-table-caption-container" [ngStyle]="{'display': flex}">
+      <div class="d-inline-block">
+        <span class="p-table-name vertical-bottom">{{title|translate}}</span>
+        <input type="text" class="search vertical-sub" pInputText size="50" [placeholder]="'general.Search'|translate"
+          (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      </div>
+      <div class="d-inline-block float-lg-left actions-container">
+        <div class="d-inline-block" *ngFor="let button of getHeaderButtons()">
+          <button pButton [label]="''" [icon]="button.icon" [class]="[button.class]" (click)="button.clickCallback(event)"
+            iconPos="left" pTooltip="{{button.tooltip|translate}}" tooltipPosition="left"></button>
+          <span class="mr-1"></span>
+        </div>
+      </div>
+      <div class="clearfix"></div></div> -->
+    <div class="p-table-caption-container"
+      [ngStyle]="{'display': 'flex', 'flex-direction': 'row', 'flex-wrap': 'wrap'}">
+      <div *ngFor="let button of getHeaderButtons()">
+        <button pButton [label]="button.label ? (button.label|translate) : ''" [icon]="button.icon" [ngStyle]="{'background-color': button.color}"
+          [class]="button.class" [ngClass]="['custom-table-top-button']" (click)="button.clickCallback($event)"
+          iconPos="left" pTooltip="{{button.tooltip|translate}}" tooltipPosition="left" type="button"></button>
+        <span class="mr-1"></span>
+      </div>
+      <div class="flex-grow-1"></div>
+      <div>
+        <input type="text" class="search vertical-sub no-outline" pInputText [placeholder]="'general.Search'|translate"
+          (input)="filter($event)" size="20">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      </div>
+    </div>
+
+
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th [ngStyle]="{'width':'100px'}" *ngIf="buttons && buttons.length > 0 && hasRowButtons">
+        {{'general.Actions'|translate}}
+      </th>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn
+        [ngStyle]="{'width':col.width ? col.width : '100px'}">
+        {{col.header|translate}}
+        <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+          ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+        </p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptyMessage" let-columns>
+    <tr>
+      <td [attr.colspan]="columns ? columns.length + 1 : 0" class="text-center pt-30 pb-30">
+        {{'general.grid.noData'|translate}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <ng-container
+        *ngTemplateOutlet="bodyTemplate ? bodyTemplate : defaultBodyTemplate; context: {rowData:this.rowData}">
+      </ng-container>
+    </tr>
+  </ng-template>
+</p-table>
+<ng-template #defaultBodyTemplate let-rowData="rowData">
+  <td [ngStyle]="{ width: '100px' }" *ngIf="buttons && buttons.length > 0 && hasRowButtons">
+    <!-- <div class="d-inline-block" *ngFor="let button of getRowButtons()">
+      <button pButton [label]="''" [icon]="button.icon"
+        [class]="[button.class + ' p-button-rounded table-rounded-button']"
+        (click)="button.clickCallback($event, rowData[dataKey])" iconPos="left"
+        pTooltip="{{ button.tooltip | translate }}" tooltipPosition="left"></button>
+      <span class="mr-1"></span>
+    </div> -->
+    <div class="table-buttons">
+      <div *ngFor="let button of buttons">
+        <div
+          style="margin-right: 20px"
+          [ngClass]="getDisabled(button, rowData[dataKey]) ? 'btn-disable' : ''"
+          (click)="button.clickCallback($event, rowData[dataKey])"
+          tooltipPosition="left"
+          *ngIf="button.type !== 'header'"
+        >
+          <span class="table-icon" [ngStyle]="{ color: button.color }" pTooltip="{{ button.tooltip | translate }}">
+            <i [class]="button.icon"></i>
+          </span>
+        </div>
+        <span class="mr-1"></span>
+      </div>
+    </div>
+  </td>
+  <td *ngFor="let col of columns">
+    <div *ngIf="col.type === 'date'">
+      {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+    </div>
+    <div *ngIf="col.type === 'number'" style="text-align: right">
+      {{ rowData[col.field] }}
+    </div>
+    <div *ngIf="col.type === undefined || col.type === 'string'">
+      {{ rowData[col.field] }}
+    </div>
+    <div *ngIf="col.type === 'boolean'">
+      <p-checkbox [binary]="true" [(ngModel)]="rowData[col.field]"></p-checkbox>
+    </div>
+  </td>
+</ng-template>

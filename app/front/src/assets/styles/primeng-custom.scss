@@ -1,0 +1,71 @@
+.p-inputtext {
+  padding: 3px;
+}
+
+.p-button {
+  background-color: $headerFontColor;
+  color: $sidebarBackgroundFirstColor;
+  &.p-button-secondary {
+    background-color: $sidebarBackgroundFirstColor !important;
+    color: $headerFontColor;
+  }
+  &.p-button-success {
+    background-color: $buttonSuccessColor !important;
+    color: $headerFontColor;
+  }
+  &.p-button-info {
+    background-color: $buttonInfoColor !important;
+    color: $headerFontColor;
+  }
+  &.p-button-warning {
+    background-color: $buttonWarningColor !important;
+    color: $headerFontColor;
+  }
+  &.p-button-help {
+    background-color: $buttonHelpColor !important;
+    color: $headerFontColor;
+  }
+  &.p-button-danger {
+    background-color: $buttonDangerColor !important;
+    color: $headerFontColor;
+  }
+}
+
+.p-inputwrapper-focus {
+  box-shadow: 0 0 0 0.1rem rgba($sidebarActiveLinkBackground, 0.6);
+  border-color: rgba($sidebarActiveLinkBackground, 0.6);
+}
+
+.p-highlight {
+  background-color: rgba($sidebarActiveLinkBackground, 0.4) !important;
+  color: $headerFontColor;
+}
+
+body .ui-inputfield.ui-state-focus:not(.ui-state-error) {
+  outline: 1px solid orange !important;
+}
+
+.p-inputtext:enabled:focus:not(.ui-state-error) {
+  border-color: $sidebarActiveLinkBackground !important;
+  box-shadow: 0 0 0 0.02rem $sidebarActiveLinkBackground !important;
+}
+
+.p-inputtext:hover {
+  box-shadow: 0 0 0 0.02rem $sidebarActiveLinkBackground !important;
+}
+
+input.ng-touched.ng-touched.ng-invalid {
+  border: 1px solid rgba(255, 0, 0, 0.678) !important;
+}
+
+.p-paginator-element {
+  color: $sidebarBackgroundSecondColor !important;
+}
+
+.p-paginator-page.p-highlight {
+  border-color: $sidebarBackgroundSecondColor;
+}
+
+.p-confirm-dialog-accept.p-button {
+  margin-left: 15px;
+}
